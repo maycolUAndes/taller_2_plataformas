@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     # REEMPLAZA con la URL de tu repositorio
-    repoURL: https://github.com/LauraCortes/crossplane_test
+    repoURL: https://github.com/maycolUAndes/taller_2_plataformas
     targetRevision: main
     path: 01-crossplane          # Directorio donde están los manifiestos
   destination:
