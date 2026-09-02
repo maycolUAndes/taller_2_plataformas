@@ -1,0 +1,47 @@
+# =====================================================================
+# Crossplane XRD — CompositeResourceDefinition
+# =====================================================================
+
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xpostgresqlinstances.database.poc.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  group: database.poc.io
+  names:
+    kind: XPostgreSQLInstance
+    plural: xpostgresqlinstances
+  claimNames:
+    kind: PostgreSQLInstance
+    plural: postgresqlinstances
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                parameters:
+                  type: object
+                  properties:
+                    dbName:
+                      type: string
+                      description: Nombre de la base de datos PostgreSQL.
+                      minLength: 1
+                    owner:
+                      type: string
+                      description: Rol propietario de la base de datos.
+                      minLength: 1
+                  required:
+                    - dbName
+                    - owner
+              required:
+                - parameters
+          required:
+            - spec
